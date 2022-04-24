@@ -4,8 +4,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import hydra
-from utils import LambdaLayer, PrintShapeLayer, length_to_mask
-from dataloader import TrainTestDataset
+from .utils import LambdaLayer, PrintShapeLayer, length_to_mask
+from .dataloader import TrainTestDataset
 from collections import defaultdict
 
 

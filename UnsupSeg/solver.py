@@ -13,10 +13,10 @@ from torch import optim
 from torch.utils.data import ConcatDataset, DataLoader
 import torchaudio
 
-from dataloader import (LibriSpeechDataset, MixedDataset, TrainTestDataset,
+from .dataloader import (LibriSpeechDataset, MixedDataset, TrainTestDataset,
                         TrainValTestDataset, collate_fn_padd, spectral_size)
-from next_frame_classifier import NextFrameClassifier
-from utils import (PrecisionRecallMetric, StatsMeter,
+from .next_frame_classifier import NextFrameClassifier
+from .utils import (PrecisionRecallMetric, StatsMeter,
                    detect_peaks, line, max_min_norm, replicate_first_k_frames)
 
 
