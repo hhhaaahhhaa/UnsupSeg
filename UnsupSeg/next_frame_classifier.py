@@ -7,6 +7,7 @@ import hydra
 from .utils import LambdaLayer, PrintShapeLayer, length_to_mask
 from .dataloader import TrainTestDataset
 from collections import defaultdict
+from . import Define
 
 
 class NextFrameClassifier(nn.Module):
@@ -33,7 +34,8 @@ class NextFrameClassifier(nn.Module):
             nn.Conv1d(LS, Z_DIM, kernel_size=4, stride=2, padding=0, bias=False),
             LambdaLayer(lambda x: x.transpose(1,2)),
         )
-        print("learning features from raw wav")
+        if Define.DEBUG:
+            print("learning features from raw wav")
         
         if self.hp.z_proj != 0:
             if self.hp.z_proj_linear:
@@ -57,7 +59,8 @@ class NextFrameClassifier(nn.Module):
                 
         # # similarity estimation projections
         self.pred_steps = list(range(1 + self.hp.pred_offset, 1 + self.hp.pred_offset + self.hp.pred_steps))
-        print(f"prediction steps: {self.pred_steps}")
+        if Define.DEBUG:
+            print(f"prediction steps: {self.pred_steps}")
 
     def score(self, f, b):
         return F.cosine_similarity(f, b, dim=-1) * self.hp.cosine_coef
