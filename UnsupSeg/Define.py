@@ -1,4 +1,4 @@
-DEBUG = True
+DEBUG = False
 
 REPO_PATH = ""
 SAMPLE_RATE = 16000
